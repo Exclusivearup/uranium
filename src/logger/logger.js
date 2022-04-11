@@ -1,5 +1,5 @@
 let welcome = function() {
-    console.log('Welcome to my application. I am Sabiha and a part of FunctionUp Uranium cohort.')
+    console.log()
 }
 
-module.exports.welcomeMessage = welcome
+module.exports=router
