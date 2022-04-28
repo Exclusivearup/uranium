@@ -7,7 +7,7 @@ const createAuthors = async function(req,res) {
         let data = req.body
         let newData = await authorModel.create(data)
 
-        res.status(200).send({message:newData})
+        res.status(201).send({message:newData})
         console.log(data)
     }
     catch(err){
