@@ -1,11 +1,11 @@
-const { application } = require('express');
- const express = require('express');
+
+const express = require('express');
+const authorController= require("../controllers/authorController")
+const blogController = require("../controllers/blogController")
 
 const router = express.Router();
 
 
-const authorController= require("../controllers/authorController")
-const blogController = require("../controllers/blogController")
 
 
 router.get("/test-me", function (req, res) {
@@ -16,6 +16,14 @@ router.get("/test-me", function (req, res) {
  router.post("/Authors",authorController.createAuthors)
 
  router.post("/Blogs",blogController.createBlog)
+
+ router.get('/blogs',blogController.getBlog );
+
+ router.delete('/blogs/:blogId',blogController.deleteBlog );
+
+ router.put('/blogs/:blogId',blogController.updateBlog)
+ router.delete('/blogs',blogController.blogDeleteOptions)
+
 
 
 
