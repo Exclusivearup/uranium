@@ -9,17 +9,16 @@ router.post('/authors', authorController.createAuthor);
 
 router.post('/login', authorController.loginAuthor);
 
-router.post('/blogs',middleware.loginCheck, blogController.createBlog);
+router.post('/blogs',middleware.authentication,middleware.autherization, blogController.createBlog);
 
+router.get('/filterblogs', middleware.authentication, blogController.getBlog);
 
- router.put('/blogs/:blogId',middleware.loginCheck, blogController.deleteBlog);
+ router.delete('/blogs/:blogId',middleware.authentication,middleware.autherization,  blogController.deleteBlog );
 
- router.get('/blogs',blogController.getBlog );
+ router.put('/blogs/:blogId',middleware.authentication,middleware.autherization, blogController.updateBlog)
 
- router.delete('/blogs/:blogId',blogController.deleteBlog );
-
- router.put('/blogs/:blogId',blogController.updateBlog)
-
+ router.delete('/blogs',middleware.authentication,middleware.autherization, blogController.blogDeleteOptions)
 
 
 module.exports=router;
+
