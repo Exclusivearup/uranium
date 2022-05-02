@@ -1,7 +1,4 @@
-
 const mongoose = require('mongoose');
-
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const blogSchema = new mongoose.Schema({
 
@@ -14,7 +11,7 @@ const blogSchema = new mongoose.Schema({
         required: true
     },
     authorId: {
-        type: ObjectId,
+        type: String,
         ref: "Auhor"
     },
     tags: [String],
@@ -31,14 +28,14 @@ const blogSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    deletedAt: {type:Date,
+    deletedAt: {
+                type:Date,
                 default:null
             },
     publishedAt: {
         type: Date,
         default: null
     }
-
 }, { timestamps: true });
 
-module.exports = mongoose.model('Blog', blogSchema)
+ module.exports = mongoose.model("blog",blogSchema)
