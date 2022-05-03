@@ -3,7 +3,6 @@ const blogModel = require("../models/blogModel")
 const authorModel = require("../models/authorModel")
 const validator = require("../utils/validator");
 
-const mongoose = require('mongoose');
 
 const ObjectId= mongoose.Types.ObjectId
 
