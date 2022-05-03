@@ -37,7 +37,7 @@ const autherization=async function (req, res, next) {
 
     const decodedToken = jwt.verify(token, "uranium");
 
-    //console.log(decodedToken)
+    // console.log(decodedToken)
     if(decodedToken.authorId != authorId){
       return res.status(401).send({status:false,msg:"unathorized access"})
     }
