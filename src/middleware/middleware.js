@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const validator = require("../utils/validator");
 
 const authentication = async function (req, res, next) {
   try {
@@ -27,14 +28,14 @@ const authentication = async function (req, res, next) {
 };
 
 
-const autherization=async function (req, res, next) {
+const authorization=async function (req, res, next) {
   try {
     let authorId=req.body.authorId;
+
     if(!authorId){
       return res.status(400).send({status:false,msg:"author id required"})
     }
     const token = req.headers["x-api-key"];
-
     const decodedToken = jwt.verify(token, "uranium");
 
     // console.log(decodedToken)
@@ -51,7 +52,21 @@ const autherization=async function (req, res, next) {
   }
 };
 
+const authorizationforDeleteBlogById=async function (req, res, next) {
+  try {
+    const token = req.headers["x-api-key"];
+    const decodedToken = jwt.verify(token, "uranium");
+
+    req.authorId = decodedToken.authorId;
+    next();
+
+  } catch (error) {
+    res.status(500).send({ status: false, Error: error.message });
+  }
+};
+
 
 
 module.exports.authentication= authentication;
-module.exports.autherization=autherization;
+module.exports.authorization=authorization;
+module.exports.deleteBlog=authorizationforDeleteBlogById;

@@ -14,6 +14,14 @@ mongoose.connect("mongodb+srv://Prit:1XW7ojhyQOrwisLq@pritcluster.dgvbr.mongodb.
 })
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
+// app.use(globalMw)
+// function globalMw(req,res,next) {
+//     // const ip=req.ip
+//     const route=req.originalUrl
+//     // const date =new Date().toLocaleString()
+//     console.log(route)
+//     next()
+// }
 
 app.use('/', router);
 
