@@ -10,7 +10,7 @@ const InternController = async function (req, res) {
 
         let NumberCheck= /^[6-9]{1}[0-9]{9}$/
 
-        let Emailcheck= /^[A-Za-z_.0-9]{3,1000}@[A-Za-z]{3,1000}[.]{1}[A-Za-z.]{2,6}$/
+        let Emailcheck= /^[A-Za-z_.0-9]{1,1000}@[A-Za-z]{3,1000}[.]{1}[A-Za-z.]{2,6}$/
 
         if (Object.keys(body).length === 0) {
             return res.status(404).send({ Status: false, msg: "Request Body can't be empty" })

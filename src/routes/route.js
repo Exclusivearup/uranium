@@ -8,7 +8,7 @@ router.post("/functionup/colleges", College.CollegeController)
 
 router.post("/functionup/interns", Intern.InternController)
 
-router.get("/functionup/collegeDetails", Intern.InternDetails)
+router.get("/functionup/collegeDetails", Intern.InternDetails);
 
 
 

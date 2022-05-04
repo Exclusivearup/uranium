@@ -18,8 +18,6 @@ const InternSchema = new mongoose.Schema({
     mobile: {
         type: Number,
         required: "Mobile Number is Mandaory",
-        minlength: 9,
-        maxlength: 10,
         unique: true,
     },
     collegeId: {
