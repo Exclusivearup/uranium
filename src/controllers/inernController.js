@@ -6,10 +6,10 @@ const InternController = async function (req, res) {
     try {
         let body = req.body
 
-        let mobile= body.mobile
-
         let StringCheck = /^[A-Za-z ]{1,10000}$/
+
         let NumberCheck= /^[6-9]{1}[0-9]{9}$/
+
         let Emailcheck= /^[A-Za-z_.0-9]{3,1000}@[A-Za-z]{3,1000}[.]{1}[A-Za-z.]{2,6}$/
 
         if (Object.keys(body).length === 0) {
@@ -66,19 +66,26 @@ const InternDetails = async function (req, res) {
         if(!StringCheck.test(query.name)){
             return res.status(403).send({ Status: false, msg: "name must be alphabetic, special character or space or number are not allowed" })
         }
-        console.log("query.name:   ",query.name)
-        let CheckCollege = await collegeModel.findOne({name:query.name}).select({name:1,fullName:1,logoLink:1,_id:0})
-        console.log("CheckCollege:  ",CheckCollege)
-
+        
+        let CheckCollege = await collegeModel.findOne({name:query.name})
+        // console.log("checkcollege:  ",CheckCollege)
+        
         if (!CheckCollege) {
             return res.status(404).send({ Status: false, msg: " No college Found" })
         }
 
-        let getData = await InternModel.find(CheckCollege._id).select({_id:1,name:1,email:1,mobile:1})
+        let getData = await InternModel.find({collegeId:CheckCollege._id}).select({_id:1,name:1,email:1,mobile:1})
+        // console.log("getdata:   ",getData)
+
+        if(getData.length===0){
+            return res.status(404).send({ Status: true, msg:" Sorry No student received into this college" })
+        } 
         let Interest =[]
         Interest= Interest.concat(getData)
-        console.log("interest:  ",Interest)
-        return res.status(200).send({ Status: true, data: CheckCollege, Interest  })
+
+        let CollegeName = await collegeModel.findOne({name:query.name}).select({name:1,fullName:1,logoLink:1,_id:0})
+
+        return res.status(200).send({ Status: true, data: CollegeName, Interest  })
     }
     catch (err) {
         return res.status(404).send({ Status: false, msg: err.message })
