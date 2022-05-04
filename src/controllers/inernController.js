@@ -39,6 +39,12 @@ const InternController = async function (req, res) {
             return res.status(403).send({ Status: false, msg: "Please enter a valid email address" })
         }
 
+        let CheckCollegeID= await collegeModel.findOne({_id:body.collegeId})
+        if(!CheckCollegeID){
+            return res.status(404).send({Status: false, msg: "This is not a valid college ID"})
+        }
+       
+
         let InternData = await InternModel.create(body)
 
         return res.status(201).send({ Status: true, msg: InternData })
@@ -68,7 +74,7 @@ const InternDetails = async function (req, res) {
         }
         
         let CheckCollege = await collegeModel.findOne({name:query.name})
-        // console.log("checkcollege:  ",CheckCollege)
+       // console.log("checkcollege:  ",CheckCollege)
         
         if (!CheckCollege) {
             return res.status(404).send({ Status: false, msg: " No college Found" })
@@ -81,7 +87,7 @@ const InternDetails = async function (req, res) {
             return res.status(404).send({ Status: true, msg:" Sorry No student received into this college" })
         } 
         let Interest =[]
-        Interest= Interest.concat(getData)
+           Interest = Interest.concat(getData)
 
         let CollegeName = await collegeModel.findOne({name:query.name}).select({name:1,fullName:1,logoLink:1,_id:0})
 
