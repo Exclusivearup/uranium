@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/Duttji1996/Project02/issues"
   },
-  "homepage": "https://github.com/Duttji1996/Project02#readme"
+  "homepage": "https://github.com/Duttji1996/Project02#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "json": "^11.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.2",
+    "mongoose-type-email": "^1.1.2",
+    "nodemon": "^2.0.16"
+  }
 }
