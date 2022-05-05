@@ -30,6 +30,14 @@ const CollegeController = async function (req, res) {
             return res.status(403).send({ Status: false, msg: "fullName must be alphabetic, no special characet or number allowed" })
         }
 
+        let checkName= await collegeModel.findOne({name:body.name})
+        
+        if(checkName){
+            if(checkName.name === body.name){
+                return res.status(403).send({Status: false, msg: "Please use another name, this has been used already"})
+            }
+        }
+
         let Data = await collegeModel.create(body)
 
         return res.status(201).send({ Status: true, msg: Data })
