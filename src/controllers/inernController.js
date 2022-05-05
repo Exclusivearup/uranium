@@ -1,7 +1,7 @@
 const InternModel = require("../models/inernModel")
 const collegeModel = require("../models/collegeModel")
 
-const InternController = async function (req, res) {
+const createIntern = async function (req, res) {
 
     try {
         let body = req.body
@@ -73,7 +73,7 @@ const InternController = async function (req, res) {
 
 // Get Api controller
 
-const InternDetails = async function (req, res) {
+const internDetails = async function (req, res) {
 
     try {
         let query = req.query
@@ -120,5 +120,5 @@ const InternDetails = async function (req, res) {
 
 
 
-module.exports.InternController = InternController
-module.exports.InternDetails = InternDetails
+module.exports.createIntern = createIntern
+module.exports.internDetails = internDetails

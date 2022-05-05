@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const College = require("../controllers/college")
-const Intern = require("../controllers/inernController")
+const collegeController = require("../controllers/collegeController")
+const internController= require("../controllers/inernController")
 
 
-router.post("/functionup/colleges", College.CollegeController)
+router.post("/functionup/colleges", collegeController.createCollege)
 
-router.post("/functionup/interns", Intern.InternController)
+router.post("/functionup/interns", internController.createIntern)
 
-router.get("/functionup/collegeDetails", Intern.InternDetails);
+router.get("/functionup/collegeDetails", internController.internDetails);
 
 
 
