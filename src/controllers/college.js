@@ -11,8 +11,10 @@ const CollegeController = async function (req, res) {
             return res.status(404).send({ Status: false, msg: "Sorry You have not enterd any data to create the account" })
         }
         // validation
-        let StringCheck = /^[A-Za-z ,]{1,10000}$/
-        let StringCheck1 = /^[A-Za-z]{1,10000}$/
+
+        let StringCheck = /^[A-Za-z ,]{2,10000}$/
+
+        let StringCheck1 = /^[A-Za-z]{2,10000}$/        // regex is use for only college:  anabbreviated name
 
         if (!body.name) {
             return res.status(404).send({ Status: false, msg: "Please Enter the name , example: iith" })
@@ -24,17 +26,17 @@ const CollegeController = async function (req, res) {
             return res.status(404).send({ Status: false, msg: "Sorry You have not enter the logoLink" })
         }
         if(!StringCheck1.test(body.name)){
-            return res.status(403).send({ Status: false, msg: "name must be alphabetic, special character or space or number are not allowed" })
+            return res.status(403).send({ Status: false, msg: "name must be alphabetic and length of word must be more than one, special characterS/space/number are not allowed" })
         }
         if(!StringCheck.test(body.fullName)){
-            return res.status(403).send({ Status: false, msg: "fullName must be alphabetic, no special characet or number allowed" })
+            return res.status(403).send({ Status: false, msg: "fullName must be alphabetic and length of word must be more than one , no special character/number allowed" })
         }
 
         let checkName= await collegeModel.findOne({name:body.name})
-        
+
         if(checkName){
             if(checkName.name === body.name){
-                return res.status(403).send({Status: false, msg: "Please use another name, this has been used already"})
+                return res.status(403).send({Status: false, msg: "Please use another name for college  name, this has been used already"})
             }
         }
 

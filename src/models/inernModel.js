@@ -7,7 +7,7 @@ const InternSchema = new mongoose.Schema({
     name: {
         type: String,
         required: "name is Mandatory",
-        trim: true
+        trim: true,
     },
     email: {
         type: Email,

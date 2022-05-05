@@ -71,7 +71,7 @@ const InternController = async function (req, res) {
     }
 }
 
-// Get Api solution
+// Get Api controller
 
 const InternDetails = async function (req, res) {
 
@@ -85,10 +85,10 @@ const InternDetails = async function (req, res) {
             return res.status(404).send({ Status: false, msg: "Please enter the name ,This is anabbreviated college name. For example: iith" })
         }
 
-        let StringCheck = /^[A-Za-z]{2,10000}$/
+        let StringCheck = /^[a-z]{2,10000}$/
 
         if (!StringCheck.test(query.name)) {
-            return res.status(403).send({ Status: false, msg: "name must be alphabetic, special character or space or number are not allowed" })
+            return res.status(403).send({ Status: false, msg: "name must be alphabetic and lowercase and length > 1 , special character or space or number are not allowed" })
         }
 
         let CheckCollege = await collegeModel.findOne({ name: query.name })
