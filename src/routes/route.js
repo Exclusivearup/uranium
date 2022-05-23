@@ -7,14 +7,15 @@ const {createBooks,GetFilteredBook,getBooksById,updateByBookId,deleteBooksBYId}
 const {createUser,loginUser} = require("../controllers/userController")
 const {authentication,authorization} = require("../middleWare/userAuth")
 const {createReview,updateReview, deleteReviewByBookIdAndReviewById} =require('../controllers/reviewController');
-
+const{createBooks1}=require('../controllers/aiisgnment')
 
  // User routes
  router.post('/register', createUser);
  router.post('/login', loginUser);
 
 //book routes
-router.post('/books',authentication,createBooks);
+// router.post('/books',authentication,createBooks);
+router.post('/books',createBooks1);
 router.get('/books', authentication, GetFilteredBook);
 router.get('/books/:bookId', authentication, getBooksById);
 router.put('/books/:bookId', updateByBookId);

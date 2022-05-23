@@ -53,5 +53,7 @@ releasedAt:{
     required: true,
     trim:true
 },
+bookCover:String,
+
 },{timestamps:true})
 module.exports = mongoose.model("Books", booksSchema)
