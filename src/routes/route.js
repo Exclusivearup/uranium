@@ -7,7 +7,7 @@ const {createBooks,GetFilteredBook,getBooksById,updateByBookId,deleteBooksBYId}
 const {createUser,loginUser} = require("../controllers/userController")
 const {authentication,authorization} = require("../middleWare/userAuth")
 const {createReview,updateReview, deleteReviewByBookIdAndReviewById} =require('../controllers/reviewController');
-const{createBooks1}=require('../controllers/aiisgnment')
+const{createBooks1}=require('../controllers/asignment')
 
  // User routes
  router.post('/register', createUser);
