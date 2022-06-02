@@ -215,7 +215,7 @@ const getProduct = async function (req, res) {
             if (priceGreaterThan == priceLessThan ) {
                 return res.status(400).send({ status: false, message: "priceGreaterThan and priceLessThan can not be the equal " })
             }
-            if ( priceGreaterThan > priceLessThan) {
+            if ( priceGreaterThan >> priceLessThan) {
                 return res.status(400).send({ status: false, message: "priceGreaterThan can not be more than priceLessThan" })
             }
 
@@ -234,7 +234,7 @@ const getProduct = async function (req, res) {
             priceSort = 1
         }
 
-        console.log(filter)
+       // console.log(filter)
         const getData = await productModel.find(filter).sort({ price: priceSort })
 
         if (getData.length == 0) {
