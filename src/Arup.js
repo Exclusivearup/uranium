@@ -12,4 +12,10 @@
 1.when file field is empty error goes to currency format field
 2.sab kuch sahi dene ke baad bhi create nahi ho raha currency format error bata raha hai
 3.
+
+*Chandu's Product creation problems
+1.isFreeShipping default value not working
+2.when availableSizes key and value both field are empty error goes to catch block
+3.Title,description and style field only number not allowed
+
 */

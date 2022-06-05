@@ -18,7 +18,7 @@ const createProduct = async (req, res) => {
         }
 
 
-        const { title, description, price, currencyId, isFreeShipping, style, availableSizes, installments } = requestBody;
+        const { title, description, price, currencyId, currencyFormat ,isFreeShipping, style, availableSizes, installments } = requestBody;
 
         //========================================== validations for title ================================================ 
 

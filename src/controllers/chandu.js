@@ -38,7 +38,7 @@ const produtCreate = async (req, res) => {
    
     const splitingString = (Arr) => {
                    
-             console.log(Arr)
+            //  console.log(Arr)
             let brr = Arr.split(',')
             
             return brr

@@ -122,8 +122,8 @@ const createUser = async function (req, res) {
         res.status(201).send({ status: true, message: "Success", data: userCreated })
 
     } catch (err) {
-        console.log(err)
-        res.status(500).send({ status: false, error: err.message });
+
+return  res.status(500).send({ status: false, error: err.message });
     }
 }
 //==================================================loginuser===========================================
@@ -143,8 +143,8 @@ const loginUser = async (req, res) => {
         }
 
         if (!isValid(email)) {
-            res.status(400).send({ status: false, msg: "Enter an email" });
-            return;
+         return res.status(400).send({ status: false, msg: "Enter an email" });
+        
         }
 
         if (!isValidEmail(email)) {
@@ -152,8 +152,8 @@ const loginUser = async (req, res) => {
         }
 
         if (!isValid(password)) {
-            res.status(400).send({ status: false, msg: "enter a password" });
-            return;
+          return  res.status(400).send({ status: false, msg: "enter a password" });
+        
         }
 
         if (!(password.length >= 8 && password.length <= 15)) {
@@ -183,8 +183,8 @@ const loginUser = async (req, res) => {
 
         res.status(200).send({ status: true, messsge: "User Login Successful", data: { userId: user._id, token: token } });
     } catch (error) {
-        console.log(error)
-        res.status(500).send({ status: false, error: error.message });
+    
+      return  res.status(500).send({ status: false, error: error.message });
     }
 }
 
@@ -316,7 +316,7 @@ const updateUser = async (req, res) => {
                 return res.status(400).send({ status: false, message: "Invalid request parameter, please provide password" })
             }
             
-            var encryptedPassword = await bcrypt.hash(tempPassword, saltRounds)
+            var encryptedPassword = await bcrypt.hash(tempPassword, 6)
         }
  //============================== validation for Address ===================================
         if (address) {

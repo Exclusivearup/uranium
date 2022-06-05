@@ -106,7 +106,7 @@ const cartCreation = async (req, res) => {
         }
 
     } catch (error) {
-        res.status(500).send({ status: false, message: error.message });
+      return  res.status(500).send({ status: false, message: error.message });
     }
 };
 
@@ -201,9 +201,9 @@ const updateCart = async function (req, res) {
         if (!userIdInDB) {
             return res.status(404).send({ status: false, message: "userId does not exist" })
         }
-        if(userIdInDB._id.toString() !==userIdFromToken){
-            return res.status(401).send({status:false, message: "Unauthorized access to user"})
-        }
+        // if(userIdInDB._id !==userIdFromToken){
+        //     return res.status(401).send({status:false, message: "Unauthorized access to user"})
+        // }
 
         const cartInDB = await cartModel.findOne({ _id: cartId })
        
@@ -228,7 +228,7 @@ const updateCart = async function (req, res) {
         for (let i = 0; i < items.length; i++) {
             if (items[i].productId == productId) {
 
-                let totelProductprice = items[i].quantity * getPrice
+                let totalProductprice = items[i].quantity * getPrice
 
                 if (removeProduct == 0 || (items[i].quantity == 1 && removeProduct == 1)) {
 
@@ -236,7 +236,7 @@ const updateCart = async function (req, res) {
                         {
                             $pull: { items: { productId: productId } },
                             $inc: {
-                                totalPrice: - totelProductprice,
+                                totalPrice: - totalProductprice,
                                 totalItems: - 1
                             }
                         },
@@ -264,7 +264,7 @@ const updateCart = async function (req, res) {
 const deleteCart = async (req, res) => {
     try {
         let userId = req.params.userId
-        let userIdFromToken = req.userId
+        // let userIdFromToken = req.userId
 
         if (!isValidObjectId(userId)) {
              return res.status(404).send({ status: false, message: "Invalid User Id" })
@@ -283,7 +283,7 @@ const deleteCart = async (req, res) => {
             return res.status(400).send({ status: false, message: "Products are already deleted in the cart" })
         }
        var removedCart = await cartModel.findOneAndUpdate({ userId:userId }, { $set: {items:[],totalItems: 0, totalPrice: 0 } }, { new: true })
-        return res.status(204).send({ status: false, message: "Cart deleted succesfully", data: removedCart })
+        return res.status(200).send({ status: false, message: "Cart deleted succesfully", data: removedCart })
 
     } catch (error) {
         res.status(500).send({ status: false, message: error.message });
